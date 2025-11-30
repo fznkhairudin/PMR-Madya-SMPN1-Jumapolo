@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Anggota PMR</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .download-section {
+            margin-top: 25px;
+            text-align: center;
+        }
+        .download-section a {
+            display: inline-block;
+            padding: 10px 16px;
+            margin: 5px;
+            background: #28a745;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+        .download-section a:hover {
+            background: #1e7e34;
+        }
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Formulir Pendaftaran PMR</h2>
+
+        <form id="pendaftaranForm">
+            <label>Nama Lengkap</label>
+            <input type="text" name="nama_lengkap" required>
+
+            <label>Nama Panggilan</label>
+            <input type="text" name="nama_panggilan" required>
+
+            <label>Tempat Tanggal Lahir</label>
+            <input type="text" name="ttl" required>
+
+            <label>Jenis Kelamin</label>
+            <select name="jenis_kelamin" required>
+                <option value="">-- Pilih --</option>
+                <option>Laki-laki</option>
+                <option>Perempuan</option>
+            </select>
+
+            <label>Golongan Darah</label>
+            <select name="gol_darah" required>
+                <option value="">-- Pilih --</option>
+                <option>A</option><option>B</option><option>AB</option><option>O</option><option>-</option>
+            </select>
+
+            <label>Agama</label>
+            <select name="agama" required>
+                <option value="">-- Pilih --</option>
+                <option>Islam</option><option>Protestan</option><option>Katolik</option>
+                <option>Hindu</option><option>Buddha</option><option>Konghucu</option>
+            </select>
+
+            <label>Kelas</label>
+            <select name="kelas" required>
+                <option value="">-- Pilih --</option>
+                <option>VII A</option><option>VII B</option><option>VII C</option>
+                <option>VII D</option><option>VII E</option><option>VII F</option><option>VII G</option>
+            </select>
+
+            <label>Alamat Lengkap</label>
+            <textarea name="alamat" rows="3" required></textarea>
+
+            <label>Nomor Telepon / Handphone</label>
+            <input type="text" name="telepon" required>
+
+            <label>Email Aktif</label>
+            <input type="email" name="email" required>
+
+            <label>Nomor Induk Kependudukan (NIK)</label>
+            <input type="text" name="nik" required>
+
+            <label>Nama Orang Tua - Ayah</label>
+            <input type="text" name="ayah" required>
+
+            <label>Nama Orang Tua - Ibu</label>
+            <input type="text" name="ibu" required>
+
+            <button type="submit">Kirim Pendaftaran</button>
+        </form>
+
+        <div class="download-section">
+            <h3>Download Dokumen</h3>
+            <a href="Formulir_Pendaftaran_Pramasaju.pdf" download>Download Formulir Pendaftaran</a>
+            <a href="Surat_Pernyataan_Pramasaju.pdf" download>Download Surat Pernyataan</a>
+        </div>
+
+        <a href="index.html" class="btn-back">← Kembali</a>
+    </div>
+
+<script>
+// *** KIRIM DATA KE GOOGLE SPREADSHEET ***
+// Ganti URL di bawah dengan Web App Script Anda
+const scriptURL = "URL_GOOGLE_SCRIPT_ANDA";
+
+const form = document.getElementById("pendaftaranForm");
+form.addEventListener("submit", e => {
+    e.preventDefault();
+    fetch(scriptURL, { method: "POST", body: new FormData(form) })
+        .then(response => alert("Pendaftaran berhasil dikirim!"))
+        .catch(error => alert("Gagal mengirim!"));
+});
+</script>
+
+</body>
+</html>
